@@ -32,6 +32,13 @@ body {
     width: 30vw;
     border: 5px solid black;
     border-radius: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#calculator > #screen-display-container > #screen-display {
+    font-size: 80px;
 }
 
 #calculator > #keys-container {
