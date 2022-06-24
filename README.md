@@ -4,7 +4,7 @@ This is the calculator project from [The Odin Project](https://www.theodinprojec
 
 [Live Demo](https://ascheabl.github.io/Calculator/) 👈
 
-##Built with <br>
+## Built with <br>
 
 #### Technologies <br>
 
