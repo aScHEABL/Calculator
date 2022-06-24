@@ -7,27 +7,17 @@ const screenDisplay_DOM = document.querySelector(`#screen-display`);
 const keys_DOM = keysArray.map((DOM_ID) => document.getElementById(`${DOM_ID}`));
 
 screenDisplay_DOM.textContent = ``;
-let operatorTriggered = false;
+
+let operatorIsClicked = (operatorIndex) => {
+    console.log(operatorIndex);
+}
 
 keys_DOM.forEach((key, index) => {
     key.addEventListener(`click`, () => {
 
-        let operatorIsClicked = (operator) => {
-            console.log(`Operator button is clicked!`);
-            let numberStr = screenDisplay_DOM.textContent;
-            operatorTriggered = true;
-        };        
-
-        if (operatorTriggered === true) {
-            screenDisplay_DOM.textContent = ``;
-        };
-
         const seeIfKeyIsNum = (index <= 10) ? true : false;
-        if (seeIfKeyIsNum === true) {
-            screenDisplay_DOM.textContent += `${keysArray[index]}`;
-            operatorTriggered = false;
-        };
-        
+        if (seeIfKeyIsNum === true) screenDisplay_DOM.textContent += `${keysArray[index]}`;
+
         switch (index) {
             case 16: // "AC" button is pressed, clear both operator and screen display.
                 operatorDisplay_DOM.textContent = ``;
@@ -52,14 +42,9 @@ keys_DOM.forEach((key, index) => {
                 operatorDisplay_DOM.textContent = `${keysArray[index]}`;
                 operatorIsClicked(index);
                 break;
-            case 11: // "=" button is pressed.
-                calculateTheResult();
-                break;
+            // case 11: // "=" button is pressed.
+            //     calculateTheResult(operatorIsClicked);
+            //     break;
         };
     });
 });
-
-
-let calculateTheResult = () => {
-
-};
