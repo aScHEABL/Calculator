@@ -10,16 +10,20 @@ screenDisplay_DOM.textContent = ``;
 let firstNumberString = ``;
 let secondNumberString = ``;
 let result = 0;
-let operatorIndexFromKeysArray = ``
+let operatorIndex = ``
 let operatorTriggered = false;
+
+if (screenDisplay_DOM.textContent.length === 9) {
+    screenDisplay_DOM.textContent = `Error`;
+};
 
 keys_DOM.forEach((key, index) => {
     key.addEventListener(`click`, () => {
 
-        let operatorIsClicked = (operatorIndex) => {
+        let operatorIsClicked = () => {
             console.log(`Operator button is clicked!`);
             firstNumberString = screenDisplay_DOM.textContent;
-            operatorIndexFromKeysArray = operatorIndex;
+            operatorIndex = index;
             operatorTriggered = true;
         };
 
@@ -29,7 +33,7 @@ keys_DOM.forEach((key, index) => {
             let firstValue = +firstNumberString;
             let secondValue = +secondNumberString;
             // calculate the result.
-            switch (keysArray[operatorIndexFromKeysArray]) {
+            switch (keysArray[operatorIndex]) {
                 case "+" :
                 console.log(`+ calculation`);
                 result = firstValue + secondValue;
@@ -74,19 +78,19 @@ keys_DOM.forEach((key, index) => {
                 break;
             case 12: // "+" button is pressed.
                 operatorDisplay_DOM.textContent = `${keysArray[index]}`;
-                operatorIsClicked(index);
+                operatorIsClicked();
                 break;
             case 13: // "-" button is pressed.
                 operatorDisplay_DOM.textContent = `${keysArray[index]}`;
-                operatorIsClicked(index);
+                operatorIsClicked();
                 break;
             case 14: // "*" button is pressed.
                 operatorDisplay_DOM.textContent = `${keysArray[index]}`;
-                operatorIsClicked(index);
+                operatorIsClicked();
                 break;
             case 15: // "/" button is pressed.
                 operatorDisplay_DOM.textContent = `${keysArray[index]}`;
-                operatorIsClicked(index);
+                operatorIsClicked();
                 break;
             case 11: // "=" button is pressed.
                 calculateTheResult();
