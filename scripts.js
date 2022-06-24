@@ -63,7 +63,7 @@ keys_DOM.forEach((key, index) => {
             if (seeIfKeyIsNum === true) {
                 screenDisplay_DOM.textContent += `${keysArray[index]}`;
                 ifMaximumDigitsExceeded = (screenDisplay_DOM.textContent.length === 9) ? true : false;
-                if (ifMaximumDigitsExceeded === true) screenDisplay_DOM.textContent = `Error`;        
+                if (ifMaximumDigitsExceeded === true) screenDisplay_DOM.textContent = `Error`;
                 operatorTriggered = false;
             };
         }
@@ -77,19 +77,10 @@ keys_DOM.forEach((key, index) => {
             case 17: // "⬅" button is pressed, backspace 1 digit from the screen display.
                 screenDisplay_DOM.textContent = screenDisplay_DOM.textContent.slice(0, screenDisplay_DOM.textContent.length - 1);
                 break;
-            case 12: // "+" button is pressed.
-                operatorDisplay_DOM.textContent = `${keysArray[index]}`;
-                operatorIsClicked();
-                break;
-            case 13: // "-" button is pressed.
-                operatorDisplay_DOM.textContent = `${keysArray[index]}`;
-                operatorIsClicked();
-                break;
-            case 14: // "*" button is pressed.
-                operatorDisplay_DOM.textContent = `${keysArray[index]}`;
-                operatorIsClicked();
-                break;
-            case 15: // "/" button is pressed.
+            case 12: // "+", "-", "*", "/" button is pressed.
+            case 13:
+            case 14:
+            case 15:
                 operatorDisplay_DOM.textContent = `${keysArray[index]}`;
                 operatorIsClicked();
                 break;
