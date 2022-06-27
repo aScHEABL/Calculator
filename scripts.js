@@ -51,17 +51,17 @@ functionButtons_DOM.forEach((button, index) => {
                 screenDisplay_DOM.textContent = screenDisplay_DOM.textContent.slice(0, screenDisplay_DOM.textContent.length - 1);
                 break;
             case 4: // sign is clicked, check if value is positive, if not turn it into negative, vice versa
-                let stringArray = [];
-                stringArray = screenDisplay_DOM.textContent.split(``);
-                const seeIfNegative = (stringArray[0] === "-") ? true : false;
+                let str = [];
+                str = screenDisplay_DOM.textContent.split(``);
+                const seeIfNegative = (str[0] === "-") ? true : false;
                 if (seeIfNegative === true) {
-                    stringArray.shift();
-                    screenDisplay_DOM.textContent = stringArray.join("");
+                    str.shift();
+                    screenDisplay_DOM.textContent = str.join("");
                 } else {
-                    stringArray.unshift("-");
-                    screenDisplay_DOM.textContent = stringArray.join("");
+                    str.unshift("-");
+                    screenDisplay_DOM.textContent = str.join("");
                 };
-                console.log(`sign is clicked! new value is: ${stringArray}`);
+                console.log(`sign is clicked! new value is: ${str}`);
                 break;
         };
     });
