@@ -13,19 +13,51 @@ const operatorButtons_DOM = operatorArray.map((DOM_ID) => document.getElementByI
 const functionButtons_DOM = functionArray.map((DOM_ID) => document.getElementById(`${DOM_ID}`));
 
 let result = 0;
+let operatorTriggered = false;
+let firstValue = ``;
+let secondValue = ``;
 screenDisplay_DOM.textContent = ``;
+operatorDisplay_DOM.textContent = ``;
 
 let operatorIsClicked = (index) => {
     console.log(`operator ${operatorArray[index]} is clicked!`);
-
+    operatorDisplay_DOM.textContent = operatorArray[index];
+    operatorTriggered = true;
+    firstValue = screenDisplay_DOM.textContent;
 };
 
 let calculateTheResult = (index) => {
     console.log(`${functionArray[index]} is clicked!`);
+    secondValue = screenDisplay_DOM.textContent;
+    firstValue = +firstValue;
+    secondValue = +secondValue;
+    switch (operatorDisplay_DOM.textContent) {
+        case "+":
+            result = firstValue + secondValue;
+            screenDisplay_DOM.textContent = result.toString();
+            break;
+        case "-":
+            resultt = firstValue - secondValue;
+            screenDisplay_DOM.textContent = result.toString();
+            break;
+        case "*":
+            result = firstValue * secondValue;
+            screenDisplay_DOM.textContent = result.toString();
+            break;
+        case "/":
+            result = firstValue / secondValue;
+            screenDisplay_DOM.textContent = result.toString();
+            break;
+    };
+    operatorDisplay_DOM.textContent = ``;
 };
 
 numButtons_DOM.forEach((button, index) => {
     button.addEventListener(`click`, () => {
+        if (operatorTriggered === true) {
+            screenDisplay_DOM.textContent = ``;
+            operatorTriggered = false;
+        };
         screenDisplay_DOM.textContent += `${numberArray[index]}`;
     });
 });
@@ -51,17 +83,8 @@ functionButtons_DOM.forEach((button, index) => {
                 screenDisplay_DOM.textContent = screenDisplay_DOM.textContent.slice(0, screenDisplay_DOM.textContent.length - 1);
                 break;
             case 4: // sign is clicked, check if value is positive, if not turn it into negative, vice versa
-                let str = [];
-                str = screenDisplay_DOM.textContent.split(``);
-                const seeIfNegative = (str[0] === "-") ? true : false;
-                if (seeIfNegative === true) {
-                    str.shift();
-                    screenDisplay_DOM.textContent = str.join("");
-                } else {
-                    str.unshift("-");
-                    screenDisplay_DOM.textContent = str.join("");
-                };
-                console.log(`sign is clicked! new value is: ${str}`);
+                console.log(typeof parseFloat(screenDisplay_DOM.textContent));
+                screenDisplay_DOM.textContent *= -1;
                 break;
         };
     });
