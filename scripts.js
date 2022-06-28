@@ -26,8 +26,8 @@ let operatorIsClicked = (index) => {
     firstValue = screenDisplay_DOM.textContent;
 };
 
-let calculateTheResult = (index) => {
-    console.log(`${functionArray[index]} is clicked!`);
+let calculateTheResult = () => {
+    console.log(`= is clicked!`);
     secondValue = screenDisplay_DOM.textContent;
     firstValue = +firstValue;
     secondValue = +secondValue;
@@ -50,6 +50,7 @@ let calculateTheResult = (index) => {
             break;
     };
     operatorDisplay_DOM.textContent = ``;
+    result = 0;
 };
 
 numButtons_DOM.forEach((button, index) => {
@@ -64,6 +65,7 @@ numButtons_DOM.forEach((button, index) => {
 
 operatorButtons_DOM.forEach((button, index) => {
     button.addEventListener(`click`, () => {
+        if (operatorDisplay_DOM.textContent !== null) calculateTheResult();
         operatorDisplay_DOM.textContent = `${operatorArray[index]}`;
         operatorIsClicked(index);
     });
@@ -73,7 +75,7 @@ functionButtons_DOM.forEach((button, index) => {
     button.addEventListener(`click`, () => {
         switch (index) {
             case 0: // = is clicked, run the calculation
-                calculateTheResult(index);
+                calculateTheResult();
                 break;
             case 1: // AC is clicked, clear both operator and screen display
                 operatorDisplay_DOM.textContent = ``;
