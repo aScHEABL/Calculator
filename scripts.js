@@ -19,6 +19,10 @@ let secondValue = ``;
 screenDisplay_DOM.textContent = ``;
 operatorDisplay_DOM.textContent = ``;
 
+let stripNumber = (number, digit) => {
+    result = (parseFloat(number).toPrecision(12));
+};
+
 let operatorIsClicked = (index) => {
     console.log(`operator ${operatorArray[index]} is clicked!`);
     operatorDisplay_DOM.textContent = operatorArray[index];
@@ -34,19 +38,31 @@ let calculateTheResult = () => {
     switch (operatorDisplay_DOM.textContent) {
         case "+":
             result = firstValue + secondValue;
+            stripNumber(result);
+            console.log(result);
             screenDisplay_DOM.textContent = result.toString();
+            if (screenDisplay_DOM.textContent.length > 8) screenDisplay_DOM.textContent = `Error`;
             break;
         case "-":
-            resultt = firstValue - secondValue;
+            result = firstValue - secondValue;
+            stripNumber(result);
+            console.log(result);
             screenDisplay_DOM.textContent = result.toString();
+            if (screenDisplay_DOM.textContent.length > 8) screenDisplay_DOM.textContent = `Error`;
             break;
         case "*":
             result = firstValue * secondValue;
+            stripNumber(result);
+            console.log(result);
             screenDisplay_DOM.textContent = result.toString();
+            if (screenDisplay_DOM.textContent.length > 8) screenDisplay_DOM.textContent = `Error`;
             break;
         case "/":
             result = firstValue / secondValue;
+            stripNumber(result);
+            console.log(result);
             screenDisplay_DOM.textContent = result.toString();
+            if (screenDisplay_DOM.textContent.length > 8) screenDisplay_DOM.textContent = `Error`;
             break;
     };
     operatorDisplay_DOM.textContent = ``;
@@ -59,7 +75,13 @@ numButtons_DOM.forEach((button, index) => {
             screenDisplay_DOM.textContent = ``;
             operatorTriggered = false;
         };
+
+        if (screenDisplay_DOM.textContent.length > 7) screenDisplay_DOM.textContent = `Error`;
+        if (screenDisplay_DOM.textContent === `Error`) {
+
+        } else {
         screenDisplay_DOM.textContent += `${numberArray[index]}`;
+        };
     });
 });
 
