@@ -19,7 +19,7 @@ let secondValue = ``;
 screenDisplay_DOM.textContent = ``;
 operatorDisplay_DOM.textContent = ``;
 
-let stripNumber = (number, digit) => {
+let stripNumber = (number) => {
     result = (parseFloat(number).toPrecision(12));
     console.log(result);
 };
