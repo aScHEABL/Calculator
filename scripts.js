@@ -21,6 +21,7 @@ operatorDisplay_DOM.textContent = ``;
 
 let stripNumber = (number, digit) => {
     result = (parseFloat(number).toPrecision(12));
+    console.log(result);
 };
 
 let operatorIsClicked = (index) => {
@@ -38,29 +39,25 @@ let calculateTheResult = () => {
     switch (operatorDisplay_DOM.textContent) {
         case "+":
             result = firstValue + secondValue;
-            stripNumber(result);
-            console.log(result);
+            // stripNumber(result);
             screenDisplay_DOM.textContent = result.toString();
             if (screenDisplay_DOM.textContent.length > 8) screenDisplay_DOM.textContent = `Error`;
             break;
         case "-":
             result = firstValue - secondValue;
-            stripNumber(result);
-            console.log(result);
+            // stripNumber(result);
             screenDisplay_DOM.textContent = result.toString();
             if (screenDisplay_DOM.textContent.length > 8) screenDisplay_DOM.textContent = `Error`;
             break;
         case "*":
             result = firstValue * secondValue;
-            stripNumber(result);
-            console.log(result);
+            // stripNumber(result);
             screenDisplay_DOM.textContent = result.toString();
             if (screenDisplay_DOM.textContent.length > 8) screenDisplay_DOM.textContent = `Error`;
             break;
         case "/":
             result = firstValue / secondValue;
-            stripNumber(result);
-            console.log(result);
+            // stripNumber(result);
             screenDisplay_DOM.textContent = result.toString();
             if (screenDisplay_DOM.textContent.length > 8) screenDisplay_DOM.textContent = `Error`;
             break;
