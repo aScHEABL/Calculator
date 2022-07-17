@@ -15,7 +15,7 @@ This is the calculator project from [The Odin Project](https://www.theodinprojec
 ## Tools <br>
 
 - Visual Studio Code <br>
-- Linux terminal <br>
+- Linux <br>
 - Git and Github <br>
 
 ## Outcome <br>
