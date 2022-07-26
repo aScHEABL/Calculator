@@ -4,6 +4,8 @@ This is the calculator project from [The Odin Project](https://www.theodinprojec
 
 [Live Demo](https://ascheabl.github.io/Calculator/) 👈
 
+![Screenshot of the live demo](./resources/images/Screen%20Shot%202022-07-27%20at%203.22.39%20AM.png)
+
 ##Built with <br>
 
 #### Technologies <br>
