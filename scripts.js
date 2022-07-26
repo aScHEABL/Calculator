@@ -1,91 +1,108 @@
 console.log("hello world!");
 
-const keysArray = [`0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `.`, `=`, `+`, `-`, `*`, `/`, `AC`, `backspace`, `M`, `sign`];
+const numberArray = [];
+const operatorArray = [`+`, `-`, `*`, `/`];
+const functionArray = [`=`, `AC`, `backspace`, `M`, `sign`];
+for (let i = 0; i < 10; i++) numberArray.push(`` + i);
+numberArray.push(`.`);
 
 const operatorDisplay_DOM = document.querySelector(`#operator-display`);
 const screenDisplay_DOM = document.querySelector(`#screen-display`);
-const keys_DOM = keysArray.map((DOM_ID) => document.getElementById(`${DOM_ID}`));
+const numButtons_DOM = numberArray.map((DOM_ID) => document.getElementById(`${DOM_ID}`));
+const operatorButtons_DOM = operatorArray.map((DOM_ID) => document.getElementById(`${DOM_ID}`));
+const functionButtons_DOM = functionArray.map((DOM_ID) => document.getElementById(`${DOM_ID}`));
 
-screenDisplay_DOM.textContent = ``;
-let firstNumberString = ``;
-let secondNumberString = ``;
 let result = 0;
-let operatorIndex = ``
 let operatorTriggered = false;
-let ifMaximumDigitsExceeded = false;
+let firstValue = ``;
+let secondValue = ``;
+screenDisplay_DOM.textContent = ``;
+operatorDisplay_DOM.textContent = ``;
 
-keys_DOM.forEach((key, index) => {
-    key.addEventListener(`click`, () => {
+let stripNumber = (number) => {
+    result = (parseFloat(number).toPrecision(12));
+    result = +result;
+    console.log(result);
+    console.log(typeof result);
+    result = result.toFixed(1);
+    screenDisplay_DOM.textContent = result;
+    if (screenDisplay_DOM.textContent.length > 8) screenDisplay_DOM.textContent = `Error`;
+};
 
-        let operatorIsClicked = () => {
-            console.log(`Operator button is clicked!`);
-            firstNumberString = screenDisplay_DOM.textContent;
-            operatorIndex = index;
-            operatorTriggered = true;
-        };
+let operatorIsClicked = (index) => {
+    console.log(`operator ${operatorArray[index]} is clicked!`);
+    operatorDisplay_DOM.textContent = operatorArray[index];
+    operatorTriggered = true;
+    firstValue = screenDisplay_DOM.textContent;
+};
 
-        let calculateTheResult = () => {
-            secondNumberString = screenDisplay_DOM.textContent;
-            // convert firstNumberString and secondNumberString from string to number.
-            let firstValue = +firstNumberString;
-            let secondValue = +secondNumberString;
-            // calculate the result.
-            switch (keysArray[operatorIndex]) {
-                case "+" :
-                console.log(`+ calculation`);
-                result = firstValue + secondValue;
-                console.log(`result is ${result}`);
-                break;
-                case "-" :
-                console.log(`- calculation`);
-                result = firstValue - secondValue;
-                break;
-                case "*" :
-                console.log(`* calculation`);
-                result = firstValue * secondValue;
-                break;
-                case "/" :
-                console.log(`/ calculation`);
-                result = firstValue / secondValue;
-                break;
-            }
-            operatorDisplay_DOM.textContent = ``;
-            screenDisplay_DOM.textContent = `${result}`;
-            console.log(result);
-            return result;
-        };
+let calculateTheResult = () => {
+    console.log(`= is clicked!`);
+    secondValue = screenDisplay_DOM.textContent;
+    firstValue = +firstValue;
+    secondValue = +secondValue;
+    switch (operatorDisplay_DOM.textContent) {
+        case "+":
+            result = firstValue + secondValue;
+             stripNumber(result);
+            break;
+        case "-":
+            result = firstValue - secondValue;
+            stripNumber(result);
+            break;
+        case "*":
+            result = firstValue * secondValue;
+            stripNumber(result);
+            break;
+        case "/":
+            result = firstValue / secondValue;
+            stripNumber(result);
+            break;
+    };
+    operatorDisplay_DOM.textContent = ``;
+    result = 0;
+};
 
+numButtons_DOM.forEach((button, index) => {
+    button.addEventListener(`click`, () => {
         if (operatorTriggered === true) {
             screenDisplay_DOM.textContent = ``;
+            operatorTriggered = false;
         };
-        if (ifMaximumDigitsExceeded === false) {
-            const seeIfKeyIsNum = (index <= 10) ? true : false;
-            if (seeIfKeyIsNum === true) {
-                screenDisplay_DOM.textContent += `${keysArray[index]}`;
-                ifMaximumDigitsExceeded = (screenDisplay_DOM.textContent.length === 9) ? true : false;
-                if (ifMaximumDigitsExceeded === true) screenDisplay_DOM.textContent = `Error`;
-                operatorTriggered = false;
-            };
-        }
 
+        if (screenDisplay_DOM.textContent.length > 7) screenDisplay_DOM.textContent = `Error`;
+        if (screenDisplay_DOM.textContent === `Error`) {
+
+        } else {
+        screenDisplay_DOM.textContent += `${numberArray[index]}`;
+        };
+    });
+});
+
+operatorButtons_DOM.forEach((button, index) => {
+    button.addEventListener(`click`, () => {
+        if (operatorDisplay_DOM.textContent !== null) calculateTheResult();
+        operatorDisplay_DOM.textContent = `${operatorArray[index]}`;
+        operatorIsClicked(index);
+    });
+});
+
+functionButtons_DOM.forEach((button, index) => {
+    button.addEventListener(`click`, () => {
         switch (index) {
-            case 16: // "AC" button is pressed, clear both operator and screen display.
+            case 0: // = is clicked, run the calculation
+                calculateTheResult();
+                break;
+            case 1: // AC is clicked, clear both operator and screen display
                 operatorDisplay_DOM.textContent = ``;
                 screenDisplay_DOM.textContent = ``;
-                ifMaximumDigitsExceeded = false;
                 break;
-            case 17: // "⬅" button is pressed, backspace 1 digit from the screen display.
+            case 2: // backspace is clicked, backspace 1 digit from the screen display
                 screenDisplay_DOM.textContent = screenDisplay_DOM.textContent.slice(0, screenDisplay_DOM.textContent.length - 1);
                 break;
-            case 12: // "+", "-", "*", "/" button is pressed.
-            case 13:
-            case 14:
-            case 15:
-                operatorDisplay_DOM.textContent = `${keysArray[index]}`;
-                operatorIsClicked();
-                break;
-            case 11: // "=" button is pressed.
-                calculateTheResult();
+            case 4: // sign is clicked, check if value is positive, if not turn it into negative, vice versa
+                console.log(typeof parseFloat(screenDisplay_DOM.textContent));
+                screenDisplay_DOM.textContent *= -1;
                 break;
         };
     });
