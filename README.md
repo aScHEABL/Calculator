@@ -6,7 +6,7 @@ This is the calculator project from [The Odin Project](https://www.theodinprojec
 
 ![Screenshot of the live demo](./resources/images/Screen%20Shot%202022-07-27%20at%203.22.39%20AM.png)
 
-##Built with <br>
+## Built with <br>
 
 #### Technologies <br>
 
