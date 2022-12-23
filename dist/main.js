@@ -1,0 +1,1 @@
+(()=>{const o=document.querySelectorAll("[data-number-button]");console.log(o)})();
